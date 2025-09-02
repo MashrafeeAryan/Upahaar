@@ -27,11 +27,10 @@ With just a few taps, you can order personalized gifts, track orders in real-tim
 
 ---
 
-## 🚀 Why It Stands Out
-This isn’t just a demo app — it’s designed with **real-world startup-level architecture**:
-- Uses **serverless AWS backend** for cost-effective scaling.  
+## 🚀 Why did I make it?
+- Wanted to use **serverless AWS backend** for cost-effective scaling.  
 - Demonstrates **full-stack integration** (mobile → backend → database → payments).  
-- Highlights **production-ready skills**: authentication, payments, push notifications, and cloud infra.  
+- Highlight **production-ready skills**: authentication, payments, push notifications, and cloud infra.  
 - Evolves from my previous project (**BDays**) into a more robust and scalable application with new features.  
 
 ---
