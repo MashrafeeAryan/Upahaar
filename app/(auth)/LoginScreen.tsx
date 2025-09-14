@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
+import Toast from "react-native-toast-message";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,7 +17,23 @@ const Login = () => {
   const router = useRouter();
 
   const handleLogin = () => {
-    alert("Login pressed");
+    if (!email || !password) {
+      Toast.show({
+        type: "error",
+        text1: "Missing Fields",
+        text2: "Please enter both email and password",
+        position: "bottom",
+      });
+      return;
+    }
+
+    Toast.show({
+      type: "success",
+      text1: "Login Successful",
+      text2: `Welcome back, ${email}`,
+    });
+
+    // TODO: Replace with backend login logic
   };
 
   return (
@@ -52,7 +69,7 @@ const Login = () => {
             <Ionicons
               name={showPassword ? "eye-off" : "eye"}
               size={22}
-              color="#6b7280" // Tailwind gray-500
+              color="#6b7280"
             />
           </TouchableOpacity>
         </View>

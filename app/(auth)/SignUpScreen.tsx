@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
+import Toast from "react-native-toast-message";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -20,13 +21,42 @@ const Signup = () => {
   const router = useRouter();
 
   const handleSignup = () => {
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+    if (!name || !email || !password || !confirmPassword) {
+      Toast.show({
+        type: "error",
+        text1: "Missing Fields",
+        text2: "Please fill in all fields",
+        position: "bottom",
+      });
       return;
     }
-    alert(
-      `Signing up with:\nName: ${name}\nEmail: ${email}\nPassword: ${password}`
-    );
+
+    if (password.length < 6) {
+      Toast.show({
+        type: "error",
+        text1: "Weak Password",
+        text2: "Password must be at least 6 characters",
+      });
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      Toast.show({
+        type: "error",
+        text1: "Password Mismatch",
+        text2: "Passwords do not match",
+      });
+      return;
+    }
+
+    // ✅ Success
+    Toast.show({
+      type: "success",
+      text1: "Account Created",
+      text2: `Welcome, ${name}!`,
+    });
+
+    // TODO: Call backend signup here (Appwrite/Firebase/etc.)
   };
 
   return (
@@ -58,7 +88,7 @@ const Signup = () => {
           placeholderTextColor="#9ca3af"
         />
 
-        {/* Password Input with Eye */}
+        {/* Password Input */}
         <View className="w-full h-12 rounded-2xl border border-gray-300 bg-gray-100 flex-row items-center px-4 mb-4">
           <TextInput
             className="flex-1 text-gray-800"
@@ -77,7 +107,7 @@ const Signup = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Confirm Password Input with Eye */}
+        {/* Confirm Password Input */}
         <View className="w-full h-12 rounded-2xl border border-gray-300 bg-gray-100 flex-row items-center px-4 mb-6">
           <TextInput
             className="flex-1 text-gray-800"
