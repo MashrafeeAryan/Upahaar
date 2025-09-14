@@ -1,18 +1,22 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+// app/_layout.tsx
+import { Stack } from "expo-router";
 
-const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return <View style={styles.container}>{children}</View>;
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-    backgroundColor: '#fff',
-  },
-});
-
-export default Layout;
+export default function AuthLayout() {
+  return (
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#1e293b", // dark slate background
+        },
+        headerTintColor: "#fff", // text color
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+      }}
+    >
+      {/* Define screens inside the stack */}
+      <Stack.Screen name="LoginScreen" options={{ title: "Login", headerShown: false }} />
+      <Stack.Screen name="SignUpScreen" options={{ title: "SignUp", headerShown: false }} />
+    </Stack>
+  );
+}
